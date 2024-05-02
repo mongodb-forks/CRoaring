@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">CRoaring
-   &#160;<span id="projectnumber">2.1.2</span>
+   &#160;<span id="projectnumber">3.0.0</span>
    </div>
    <div id="projectbrief">Roaring bitmaps in C (and C++)</div>
   </td>
@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <h1><a class="anchor" id="autotoc_md1"></a>
 Introduction</h1>
 <p>Bitsets, also called bitmaps, are commonly used as fast data structures. Unfortunately, they can use too much memory. To compensate, we often use compressed bitmaps.</p>
-<p>Roaring bitmaps are compressed bitmaps which tend to outperform conventional compressed bitmaps such as WAH, EWAH or Concise. They are used by several major systems such as <a href="https://lucene.apache.org/">Apache Lucene</a> and derivative systems such as <a href="https://lucene.apache.org/solr/">Solr</a> and <a href="https://www.elastic.co/products/elasticsearch">Elasticsearch</a>, <a href="http://druid.io/">Metamarkets' Druid</a>, <a href="http://github.com/linkedin/pinot/wiki">LinkedIn Pinot</a>, <a href="https://github.com/Netflix/atlas">Netflix Atlas</a>, <a href="https://spark.apache.org/">Apache Spark</a>, <a href="http://www.opensearchserver.com">OpenSearchServer</a>, <a href="https://github.com/jpillora/cloud-torrent">Cloud Torrent</a>, <a href="https://bitbucket.org/mchaput/whoosh/wiki/Home">Whoosh</a>, <a href="https://www.influxdata.com">InfluxDB</a>, <a href="https://www.pilosa.com/">Pilosa</a>, <a href="http://www.blevesearch.com">Bleve</a>, <a href="https://www.visualstudio.com/team-services/">Microsoft Visual Studio Team Services (VSTS)</a>, and eBay's <a href="http://kylin.apache.org/">Apache Kylin</a>. The CRoaring library is used in several systems such as <a href="http://doris.incubator.apache.org">Apache Doris</a>, <a href="https://github.com/ClickHouse/ClickHouse">ClickHouse</a>, and <a href="https://github.com/StarRocks/starrocks">StarRocks</a>. The YouTube SQL Engine, <a href="https://research.google/pubs/pub48388/">Google Procella</a>, uses Roaring bitmaps for indexing.</p>
+<p>Roaring bitmaps are compressed bitmaps which tend to outperform conventional compressed bitmaps such as WAH, EWAH or Concise. They are used by several major systems such as <a href="https://lucene.apache.org/">Apache Lucene</a> and derivative systems such as <a href="https://lucene.apache.org/solr/">Solr</a> and <a href="https://www.elastic.co/products/elasticsearch">Elasticsearch</a>, <a href="http://druid.io/">Metamarkets' Druid</a>, <a href="http://github.com/linkedin/pinot/wiki">LinkedIn Pinot</a>, <a href="https://github.com/Netflix/atlas">Netflix Atlas</a>, <a href="https://spark.apache.org/">Apache Spark</a>, <a href="http://www.opensearchserver.com">OpenSearchServer</a>, <a href="https://github.com/jpillora/cloud-torrent">Cloud Torrent</a>, <a href="https://bitbucket.org/mchaput/whoosh/wiki/Home">Whoosh</a>, <a href="https://www.influxdata.com">InfluxDB</a>, <a href="https://www.pilosa.com/">Pilosa</a>, <a href="http://www.blevesearch.com">Bleve</a>, <a href="https://www.visualstudio.com/team-services/">Microsoft Visual Studio Team Services (VSTS)</a>, and eBay's <a href="http://kylin.apache.org/">Apache Kylin</a>. The CRoaring library is used in several systems such as <a href="http://doris.incubator.apache.org">Apache Doris</a>, <a href="https://github.com/ClickHouse/ClickHouse">ClickHouse</a>, <a href="https://github.com/redpanda-data/redpanda">Redpanda</a>, and <a href="https://github.com/StarRocks/starrocks">StarRocks</a>. The YouTube SQL Engine, <a href="https://research.google/pubs/pub48388/">Google Procella</a>, uses Roaring bitmaps for indexing.</p>
 <p>We published a peer-reviewed article on the design and evaluation of this library:</p>
 <ul>
 <li>Roaring Bitmaps: Implementation of an Optimized Software Library, Software: Practice and Experience 48 (4), 2018 <a href="https://arxiv.org/abs/1709.07821">arXiv:1709.07821</a></li>
@@ -115,7 +115,7 @@ Requirements</h1>
 <ul>
 <li>Linux, macOS, FreeBSD, Windows (MSYS2 and Microsoft Visual studio).</li>
 <li>We test the library with ARM, x64/x86 and POWER processors. We only support little endian systems (big endian systems are vanishingly rare).</li>
-<li>Recent C compiler supporting the C11 standard (GCC 7 or better, LLVM 7.0 or better, Xcode 11 or better, Microsoft Visual Studio 2022 or better, Intel oneAPI Compiler 2023.2 or better), there is also an optional C++ class that requires a C++ compiler supporting the C++11 standard.</li>
+<li>Recent C compiler supporting the C11 standard (GCC 7 or better, LLVM 8 or better (clang), Xcode 11 or better, Microsoft Visual Studio 2022 or better, Intel oneAPI Compiler 2023.2 or better), there is also an optional C++ class that requires a C++ compiler supporting the C++11 standard.</li>
 <li>CMake (to contribute to the project, users can rely on amalgamation/unity builds if they do not wish to use CMake).</li>
 <li>The CMake system assumes that git is available.</li>
 <li>Under x64 systems, the library provides runtime dispatch so that optimized functions are called based on the detected CPU features. It works with GCC, clang (version 9 and up) and Visual Studio (2017 and up). Other systems (e.g., ARM) do not need runtime dispatch.</li>
@@ -142,7 +142,7 @@ Quick Start</h1>
 </ol>
 <h1><a class="anchor" id="autotoc_md5"></a>
 Using Roaring as a CPM dependency</h1>
-<p>If you like CMake and CPM, you can just a few lines in you <code>CMakeLists.txt</code> file to grab a <code>CRoaring</code> release. <a href="https://github.com/RoaringBitmap/CPMdemo">See our CPM demonstration for further details</a>.</p>
+<p>If you like CMake and CPM, you can add just a few lines in your <code>CMakeLists.txt</code> file to grab a <code>CRoaring</code> release. <a href="https://github.com/RoaringBitmap/CPMdemo">See our CPM demonstration for further details</a>.</p>
 <div class="fragment"><div class="line">cmake_minimum_required(VERSION 3.10)</div>
 <div class="line">project(roaring_demo</div>
 <div class="line">  LANGUAGES CXX C</div>
@@ -165,7 +165,7 @@ Using Roaring as a CPM dependency</h1>
 <div class="line">target_link_libraries(hello roaring::roaring)</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md6"></a>
 Using as a CMake dependency with FetchContent</h1>
-<p>If you like CMake, you can just a few lines in you <code>CMakeLists.txt</code> file to grab a <code>CRoaring</code> release. <a href="https://github.com/RoaringBitmap/croaring_cmake_demo_single_file">See our demonstration for further details</a>.</p>
+<p>If you like CMake, you can add just a few lines in your <code>CMakeLists.txt</code> file to grab a <code>CRoaring</code> release. <a href="https://github.com/RoaringBitmap/croaring_cmake_demo_single_file">See our demonstration for further details</a>.</p>
 <p>If you installed the CRoaring library locally, you may use it with CMake's <code>find_package</code> function as in this example:</p>
 <div class="fragment"><div class="line">cmake_minimum_required(VERSION 3.15)</div>
 <div class="line"> </div>
@@ -212,17 +212,17 @@ Dealing with large volumes</h1>
 <h1><a class="anchor" id="autotoc_md10"></a>
 Running microbenchmarks</h1>
 <p>We have microbenchmarks constructed with the Google Benchmarks. Under Linux or macOS, you may run them as follows:</p>
-<div class="fragment"><div class="line">cmake -B build</div>
+<div class="fragment"><div class="line">cmake -B build -D ENABLE_ROARING_MICROBENCHMARKS=ON</div>
 <div class="line">cmake --build build</div>
 <div class="line">./build/microbenchmarks/bench</div>
 </div><!-- fragment --><p>By default, the benchmark tools picks one data set (e.g., <code>CRoaring/benchmarks/realdata/census1881</code>). We have several data sets and you may pick others:</p>
-<div class="fragment"><div class="line">./build/microbenchmarks/bench benchmarks/realdata/wikileaks-noquotes </div>
+<div class="fragment"><div class="line">./build/microbenchmarks/bench benchmarks/realdata/wikileaks-noquotes</div>
 </div><!-- fragment --><p>You may disable some functionality for the purpose of benchmarking. For example, assuming you have an x64 processor, you could benchmark the code without AVX-512 even if both your processor and compiler supports it:</p>
-<div class="fragment"><div class="line">cmake -B buildnoavx512 -D ROARING_DISABLE_AVX512=ON</div>
+<div class="fragment"><div class="line">cmake -B buildnoavx512 -D ROARING_DISABLE_AVX512=ON -D ENABLE_ROARING_MICROBENCHMARKS=ON</div>
 <div class="line">cmake --build buildnoavx512</div>
 <div class="line">./buildnoavx512/microbenchmarks/bench</div>
 </div><!-- fragment --><p>You can benchmark without AVX or AVX-512 as well:</p>
-<div class="fragment"><div class="line">cmake -B buildnoavx -D ROARING_DISABLE_AVX=ON</div>
+<div class="fragment"><div class="line">cmake -B buildnoavx -D ROARING_DISABLE_AVX=ON -D ENABLE_ROARING_MICROBENCHMARKS=ON</div>
 <div class="line">cmake --build buildnoavx</div>
 <div class="line">./buildnoavx/microbenchmarks/bench</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md11"></a>
@@ -631,7 +631,7 @@ Usage (Using &lt;tt&gt;vcpkg&lt;/tt&gt; on Windows, Linux and macOS)</h2>
 <p>On Windows (64-bit):</p>
 <div class="fragment"><div class="line">.\vcpkg.exe install roaring:x64-windows</div>
 </div><!-- fragment --><p>will build and install <code>roaring</code> as a shared library.</p>
-<div class="fragment"><div class="line">.\vcpkg.exe install roaring:x64-windows-static  </div>
+<div class="fragment"><div class="line">.\vcpkg.exe install roaring:x64-windows-static</div>
 </div><!-- fragment --><p>will build and install <code>roaring</code> as a static library.</p>
 <p>These commands will also print out instructions on how to use the library from MSBuild or CMake-based projects.</p>
 <p>If you find the version of <code>roaring</code> shipped with <code>vcpkg</code> is out-of-date, feel free to report it to <code>vcpkg</code> community either by submiting an issue or by creating a PR.</p>
@@ -641,9 +641,31 @@ SIMD-related throttling</h1>
 <p>Our AVX-512 code is only enabled on recent hardware (Intel Ice Lake or better and AMD Zen 4) where SIMD-specific frequency throttling is not observed.</p>
 <h1><a class="anchor" id="autotoc_md21"></a>
 Thread safety</h1>
-<p>Like, for example, STL containers or Java's default data structures, the CRoaring library has no built-in thread support. Thus whenever you modify a bitmap in one thread, it is unsafe to query it in others. It is safe however to query bitmaps (without modifying them) from several distinct threads, as long as you do not use the copy-on-write attribute. For example, you can safely copy a bitmap and use both copies in concurrently. One should probably avoid the use of the copy-on-write attribute in a threaded environment.</p>
-<p>Some of our users rely on "copy-on-write" (default to disabled). A bitmap with the copy-on-write flag set to true might generate shared containers. A shared container is just a reference to a single container with reference counting (we keep track of the number of shallow copies). If you copy shared containers over several threads, this might be unsafe due to the need to update the counter concurrently. Thus for shared containers, we use reference counting with an atomic counter. If the library is compiled as a C library (the default), we use C11 atomics. Unfortunately, Visual Studio does not support C11 atomics at this times (though this is subject to change). To compensate, we use Windows-specific code in such instances (<code>_InterlockedDecrement</code> <code>_InterlockedIncrement</code>).</p>
-<h1><a class="anchor" id="autotoc_md22"></a>
+<p>Like, for example, STL containers, the CRoaring library has no built-in thread support. Thus whenever you modify a bitmap in one thread, it is unsafe to query it in others. However, you can safely copy a bitmap and use both copies in concurrently.</p>
+<p>If you use "copy-on-write" (default to disabled), then you should pass copies to the different threads. They will create shared containers, and for shared containers, we use reference counting with an atomic counter.</p>
+<p>To summarize:</p><ul>
+<li>If you do not use copy-on-write, you can access concurrent the same bitmap safely as long as you do not modify it. If you plan on modifying it, you should pass different copies to the different threads.</li>
+<li>If you use copy-on-write, you should always pass copies to the different threads. The copies and then lightweight (shared containers).</li>
+</ul>
+<p>Thus the following pattern where you copy bitmaps and pass them to different threads is safe with or without COW:</p>
+<div class="fragment"><div class="line">roaring_bitmap_set_copy_on_write(r1, <span class="keyword">true</span>);</div>
+<div class="line">roaring_bitmap_set_copy_on_write(r2, <span class="keyword">true</span>);</div>
+<div class="line">roaring_bitmap_set_copy_on_write(r3, <span class="keyword">true</span>);</div>
+<div class="line"> </div>
+<div class="line">roaring_bitmap_t * r1a = roaring_bitmap_copy(r1);</div>
+<div class="line">roaring_bitmap_t * r1b = roaring_bitmap_copy(r1);</div>
+<div class="line"> </div>
+<div class="line">roaring_bitmap_t * r2a = roaring_bitmap_copy(r2);</div>
+<div class="line">roaring_bitmap_t * r2b = roaring_bitmap_copy(r2);</div>
+<div class="line"> </div>
+<div class="line">roaring_bitmap_t * r3a = roaring_bitmap_copy(r3);</div>
+<div class="line">roaring_bitmap_t * r3b = roaring_bitmap_copy(r3);</div>
+<div class="line"> </div>
+<div class="line">roaring_bitmap_t *rarray1[3] = {r1a, r2a, r3a};</div>
+<div class="line">roaring_bitmap_t *rarray2[3] = {r1b, r2b, r3b};</div>
+<div class="line">std::thread thread1(run, rarray1);</div>
+<div class="line">std::thread thread2(run, rarray2);</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md22"></a>
 How to best aggregate bitmaps?</h1>
 <p>Suppose you want to compute the union (OR) of many bitmaps. How do you proceed? There are many different strategies.</p>
 <p>You can use <code>roaring_bitmap_or_many(bitmapcount, bitmaps)</code> or <code>roaring_bitmap_or_many_heap(bitmapcount, bitmaps)</code> or you may even roll your own aggregation:</p>
